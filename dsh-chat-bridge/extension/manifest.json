@@ -1,0 +1,13 @@
+﻿{
+  "manifest_version": 3,
+  "name": "DSH DeepSeek Bridge",
+  "version": "1.0.1",
+  "permissions": ["tabs", "debugger", "storage", "scripting", "alarms"],
+  "host_permissions": ["https://chat.deepseek.com/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": ["https://chat.deepseek.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}

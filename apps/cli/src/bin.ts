@@ -28,6 +28,19 @@ export async function runCli(options: RunCliOptions = {}): Promise<void> {
   const { manageDesktopProfile, ...profileOptions } = options
   const invocation = parseDshArgs(process.argv.slice(2), version, manageDesktopProfile)
 
+  // Optional SOCKS5 via ciadpi (ByeDPI) for model traffic only.
+  // UI traffic is unaffected: model-fetch uses undici@8 fetch + Socks5ProxyAgent.
+  if (process.env.USE_SOCKS5 === '1' && invocation.mode === 'profile') {
+    const { startCiadpi } = await import('./socks/ciadpi-launch.ts')
+    const binary = process.env.CIADPI_BINARY || `${process.env.HOME}/Desktop/system/packages/byedpi/ciadpi`
+    const preferredPort = Number(process.env.CIADPI_PORT) || 1080
+    const { port } = await startCiadpi(binary, { preferredPort })
+    if (port > 0) {
+      process.env.CIADPI_ACTIVE_PORT = String(port)
+      process.stderr.write(`[dsh] ciadpi active on socks5://127.0.0.1:${port}\n`)
+    }
+  }
+
   switch (invocation.mode) {
     case 'profile': {
       const { runProfile } = await import('./profile-boot.ts')

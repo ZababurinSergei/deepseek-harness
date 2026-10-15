@@ -117,7 +117,15 @@ export class DeepSeekAdapter<C extends Connection = Connection> extends LlmAdapt
             ? [MESSAGES_TOOL_CHANGES_BETA]
             : [],
         ]
-        const response = await fetch(`${messagesApiRoot(connection.baseURL)}/messages`, {
+        // Route model traffic through ciadpi (SOCKS5) when active; otherwise uses global fetch.
+
+        const modelFetchFn: typeof fetch = process.env.CIADPI_ACTIVE_PORT
+
+          ? (await import('./socks/model-fetch.ts')).modelFetch(Number(process.env.CIADPI_ACTIVE_PORT))
+
+          : fetch
+
+        const response = await modelFetchFn(`${messagesApiRoot(connection.baseURL)}/messages`, {
           method: 'POST', signal, body: extensions.payload, redirect: 'error',
           headers: {
             ...attributionHeaders(),

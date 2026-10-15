@@ -206,17 +206,19 @@
   "devDependencies": {
     "@deepseek-ai/dsh-agent": "workspace:*",
     "@deepseek-ai/dsh-browser-use": "workspace:*",
-    "@deepseek-ai/dsh-experimental-browser-use-runtime": "workspace:*",
-    "@deepseek-ai/dsh-experimental-browser-use-playwright-mcp": "workspace:*",
-    "@deepseek-ai/dsh-experimental-browser-use-chrome-devtools-mcp": "workspace:*",
-    "@deepseek-ai/dsh-experimental-browser-use-stagehand-native": "workspace:*",
     "@deepseek-ai/dsh-computer-use": "workspace:*",
+    "@deepseek-ai/dsh-experimental-browser-use-chrome-devtools-mcp": "workspace:*",
+    "@deepseek-ai/dsh-experimental-browser-use-playwright-mcp": "workspace:*",
+    "@deepseek-ai/dsh-experimental-browser-use-runtime": "workspace:*",
+    "@deepseek-ai/dsh-experimental-browser-use-stagehand-native": "workspace:*",
+    "@deepseek-ai/dsh-experimental-claude-code-mods": "workspace:*",
     "@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp": "workspace:*",
     "@deepseek-ai/dsh-experimental-computer-use-cua-driver-native": "workspace:*",
-    "@deepseek-ai/dsh-experimental-claude-code-mods": "workspace:*",
     "@deepseek-ai/dsh-llm-replay": "workspace:*",
     "@deepseek-ai/dsh-mcp-client": "workspace:*",
+    "@deepseek-ai/dsh-skill-office": "workspace:*",
     "@deepseek-ai/dsh-tool-session-query": "workspace:*",
+    "@deepseek-ai/dsh-tool-workspace-dependencies": "workspace:*",
     "@deepseek-ai/dsh-web-fetch-http": "workspace:*",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@testing-library/dom": "^10.4.1",
@@ -247,6 +249,7 @@
     "micromark-extension-gfm": "^3.0.0",
     "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",
+    "playwright": "1.61.1",
     "pnpm": "11.7.0",
     "publint": "^0.3.21",
     "semver": "^7.8.5",
@@ -258,8 +261,6 @@
     "typescript": "^6.0.3",
     "vite": "8.0.16",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.8",
-    "@deepseek-ai/dsh-skill-office": "workspace:*",
-    "@deepseek-ai/dsh-tool-workspace-dependencies": "workspace:*"
+    "vitest": "^4.1.8"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "vendor_dir": "/home/sergei/Desktop/system/packages/a4_6537/vendor/infoenergo-ui",
+  "tmp_dir": "/home/sergei/Desktop/system/packages/a4_6537/tmp",
+  "ranges": [
+    {
+      "name": "01-tree-baseline",
+      "desc": "Дерево/lazy-tree/master-detail/useFetch-fix поверх upstream-оригинала",
+      "from": "1362711",
+      "to":   "baseline-1m"
+    },
+    {
+      "name": "02-1M-fenwick",
+      "desc": "I2: TwoTierChunks для pageHeights в useVirtualScroll (O(sqrt N) вместо O(N))",
+      "from": "baseline-1m",
+      "to":   "37239b8"
+    }
+  ]
+}

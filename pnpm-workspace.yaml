@@ -15,6 +15,7 @@ packages:
   - python/sdk-runtime
 
 overrides:
+  micromark-util-types: 2.0.3
   'extract-zip>yauzl': '3.4.0'
   '@deepseek-ai/cosmokit': 'link:vendor/cosmokit'
   '@deepseek-ai/schemastery': 'link:vendor/schemastery'
@@ -35,7 +36,7 @@ allowBuilds:
   node-pty: true
   # Pulled in by @earendil-works/pi-ai (optional LLM API backend). pnpm lists
   # them only because they ship lifecycle scripts, but those are no-ops we don't
-  # need, so we deny them — install still succeeds.
+  # need, so we deny them ? install still succeeds.
   '@google/genai': false
   protobufjs: false
   node-addon-require-builtin: false

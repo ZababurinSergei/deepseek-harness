@@ -1,90 +1,65 @@
 # HANDOFF — deepseek-harness
 
-Дата: 20261111-194043
+Дата: 20261111-195920
 ROOT: C:\Users\szababurin\WebstormProjects\deepseek-harness
+
+## ВАЖНО: история переписана
+
+Секрет (GitLab Access Token) был удалён из истории через `git filter-repo`.
+Все SHA коммитов **переписаны**. Старые клоны недействительны.
+
+**Если у вас есть клон — переклонируйте:**
+~~~
+git clone https://github.com/ZababurinSergei/deepseek-harness.git
+~~~
+
+**Токен GitLab — отозвать** (если ещё не отозван). `filter-repo` не отменяет утечку.
+
+## Актуальные коммиты (после filter-repo)
+
+- `e0da580e27 update`
+- `3b0ece0071 chore(gitignore): add *.bak-* rules + fix EOF blank line`
+- `d3f4e3d852 chore: untrack .bak-* artifacts (gitignore now effective)`
+- `0827a08347 chore: add .gitignore + initial 39 skills (artifacts excluded)`
+- `ce26d91ae6 chore(skills): whitespace-fix (trailing ws + blank line at EOF)`
+- `0e8e17ad18 feat(skills+demo): WebMCP/Prompt/Summarizer skills + demo + handoff`
+- `e5dea4e7ea update`
+- `c5b307e64e chore(llm-deepseek): add undici dependency`
+- `aef1691f46 chore(llm-pi-ai): regenerate provider data against upstream provider list`
+- `0882e1b9ef Merge remote-tracking branch 'upstream/master'`
+- `9c205649de chore(cli): drop obsolete @deepseek-ai/dsh-experimental-agent-team-profile dependency`
+- `3b4aa3cab2 update`
+- `04bf037ccf update`
+- `e8f7b93a34 Merge pull request #8278 from deepseek-harness/worktree-sync-release-dsh-0.2.2-rc.2-to-master`
+- `4e205cd66d Merge release/dsh-0.2.2 (0.2.2-rc.2) into master`
+- `ddac96760b Merge pull request #8277 from deepseek-harness/worktree-release-dsh-0.2.2-rc.2`
+- `91319233e1 release(dsh): 0.2.2-rc.2`
+- `378efd8556 Merge pull request #8265 from deepseek-harness/saafo/duo-text-autosizing`
+- `4861a5022a Merge pull request #8213 from deepseek-harness/split-exports-test-fixtures`
+- `5c59a44fc7 Merge pull request #8274 from deepseek-harness/worktree/cherry-pick-8225-to-0.2.2`
 
 ## Состояние сессии
 
-- Такт 0: закрыт (39 SKILL.md загружены, ROOT TREE снят, POSTMESSAGE = NULL=evidence)
-- M1: demo ×3 созданы (webmcp, prompt-api, summarizer)
-- M2: all-in-one.html + README.md созданы
-- M3: статическая валидация 4/4 OK; Playwright не установлен (NULL=evidence)
+- Такт 0: закрыт (39 SKILL.md, ROOT TREE)
+- M1-M4: demo ×4 + README + whitespace-fix
+- `.gitignore`: `*.bak-*`, `*.bak`, `tmp/`, `node_modules/`, `dist/`, `build/`, `.cache/`
+- `zb.md` удалён из истории (был с GitLab token)
+- `origin` восстановлен после `filter-repo`
 
 ## Артефакты
 
-### Skills (39)
-
-- skills/asuse-databases/SKILL.md:b8540234
-- skills/asuse-frontend/SKILL.md:df2afd31
-- skills/asuse-gateway/SKILL.md:0a03e240
-- skills/asuse-meta/SKILL.md:21c2268a
-- skills/auto-orchestrator/SKILL.md:27f0d87b
-- skills/browser-automation/SKILL.md:aa2284cb
-- skills/browser-testing/SKILL.md:eca9543c
-- skills/chat-mode-lead/SKILL.md:64aaadf7
-- skills/commands/SKILL.md:0d4451fe
-- skills/context/SKILL.md:e0840b61
-- skills/doc-sync/SKILL.md:fbab445c
-- skills/escaping-message/SKILL.md:794a81f8
-- skills/experts/SKILL.md:1d28e083
-- skills/help/SKILL.md:8c25e8a8
-- skills/kill-process/SKILL.md:c80f7f1b
-- skills/ots-core/SKILL.md:b8eb4379
-- skills/playwright/SKILL.md:d1111dcc
-- skills/postgres-readonly/SKILL.md:7c7538a2
-- skills/postmessage/SKILL.md:80a40ee6
-- skills/powershell-first/SKILL.md:c42c7b88
-- skills/printf-rules/SKILL.md:e91bec66
-- skills/printf-rules-core/SKILL.md:2172477d
-- skills/printf-rules-sse-logs/SKILL.md:7024cb2c
-- skills/printf-rules-workers/SKILL.md:fbf939c5
-- skills/project-init/SKILL.md:510554d6
-- skills/prompt-api/SKILL.md:3990d683
-- skills/read-mode-task/SKILL.md:966a34a5
-- skills/rules-first-task/SKILL.md:74595466
-- skills/session-handoff/SKILL.md:1454b23a
-- skills/shader-analysis/SKILL.md:76a56d4b
-- skills/summarizer/SKILL.md:11959bf2
-- skills/task-output/SKILL.md:965be45d
-- skills/task-types/SKILL.md:d7ad9a80
-- skills/trees-workflow/SKILL.md:9e32300c
-- skills/type-check/SKILL.md:0629cb87
-- skills/use-ai-data-table/SKILL.md:575bd59c
-- skills/use-ai-grid/SKILL.md:3f64de1e
-- skills/webgpu-debug/SKILL.md:a33e4f0b
-- skills/webmcp/SKILL.md:462df81e
-
-### Demo
-
-- demo/all-in-one.html:f7575e6d
-- demo/prompt-api-demo.html:09b2b269
-- demo/README.md:692e5e5f
-- demo/summarizer-demo.html:de082d07
-- demo/webmcp-demo.html:200873ec
-
-### Ключевые скилы
-
-- `.dsh/skills/escaping-message/SKILL.md:794a81f8` — 3 секции PS 5.1:
-  - `[PS51-HERESTRING-INTERACTIVE]` — `@'...'@` в интерактивной консоли ненадёжен
-  - `[PS51-DRIVE-VAR]` — `$name:` → `InvalidVariableReferenceWithDrive`, правильно `${name}:`
-  - (плюс ловушка `else` на отдельной строке)
-- `.dsh/skills/webmcp/SKILL.md:462df81e`
-- `.dsh/skills/prompt-api/SKILL.md:3990d683`
-- `.dsh/skills/summarizer/SKILL.md:11959bf2`
+- `.dsh/skills/` — 39 SKILL.md (ключевые: escaping-message, webmcp, prompt-api, summarizer)
+- `demo/` — 4 HTML + README
+- `HANDOFF.md` — этот файл
+- `.gitignore` — артефакты исключены
 
 ## Следующая сессия
 
 1. Прочитать `HANDOFF.md` (этот файл).
-2. Проверить `.dsh/skills/` — 39 SKILL.md, ключевые sha выше.
+2. Проверить `.dsh/skills/` — 39 SKILL.md.
 3. Открыть `demo/README.md` — инструкция по флагам Chrome.
-4. Опционально: `npm i -D playwright` + `npx playwright install chromium` для headless-валидации.
-5. Работа с задачами M4/PM — по запросу.
-
-## POSTMESSAGE
-
-- NULL=evidence: POSTMESSAGE не найден в ROOT, .., ..\..
+4. Работа с задачами M5/PM — по запросу.
 
 ## KEEP
 
 - HANDOFF.md
-- tmp/handoff-*/

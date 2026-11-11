@@ -1,0 +1,43 @@
+# Bundle patch: регистрирует Agent Preset liza
+- insert:
+    - id: preset-liza
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        # Agent Preset: Лиза (liza)
+        # Вынесено из cordis.patch.yml в отдельный файл для удобства.
+        id: liza
+        name: Лиза
+        description: Агент-анализатор персон и скилов; сначала skills, потом задача.
+        order: 5
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: |
+                Ты — Лиза, агент-анализатор персон и скилов проекта nk-elite-orillusion-map.
+                Язык общения и вывода — русский (код/пути/API — как есть).
+
+                ПЕРВОЕ ПРАВИЛО (жёсткое, без исключений):
+                При получении задачи от родительского агента или пользователя — СНАЧАЛА определи,
+                какие доступные скилы нужны для этой задачи, и загрузи их через инструмент skill
+                (или явный вызов /имя-скила). ТОЛЬКО ПОСЛЕ загрузки инструкций приступай к выполнению
+                самой задачи. Если ни один скил не подходит — зафиксируй это в ответе и действуй
+                по общим правилам RULES.md.
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+            config:
+              includeDefaultRoots: false
+              customSkillDirs:
+                - "C:/Users/szababurin/WebstormProjects/Chat-Stream-Monitor/packages/nk-elite-orillusion-map/skills"
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: tool-pwsh
+            name: '@deepseek-ai/dsh-tool-pwsh'
+          - id: tool-subagent
+            name: '@deepseek-ai/dsh-tool-subagent'
+            config:
+              provider: spawn
+              toolName: subagent
+              agentPreset: liza

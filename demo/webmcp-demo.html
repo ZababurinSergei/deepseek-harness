@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>WebMCP Demo</title></head>
+<body><h1>WebMCP Demo</h1><p id="status">…</p><pre id="output"></pre>
+<script>
+(async () => {
+  if (!('modelContext' in document)) { document.getElementById('status').textContent = 'no WebMCP'; return; }
+  const c = new AbortController();
+  await document.modelContext.registerTool({
+    name: 'summarize_text',
+    description: 'Summarize text in 1-2 sentences.',
+    inputSchema: { type: 'object', properties: { text: { type: 'string' } }, required: ['text'] },
+    annotations: { readOnlyHint: true },
+    async execute({ text }) {
+      if (typeof text !== 'string') return { error: 'text must be string' };
+      const s = text.split(/[.!?]+/).filter(x => x.trim());
+      return { summary: s.slice(0,2).join('. ') + '.' };
+    }
+  }, { signal: c.signal });
+  document.getElementById('status').textContent = 'registered';
+  window.addEventListener('beforeunload', () => c.abort());
+})();
+</script></body></html>

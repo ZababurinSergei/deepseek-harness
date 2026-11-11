@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Prompt API Demo</title></head>
+<body><h1>Prompt API</h1><p id="status">…</p>
+<textarea id="inp" rows="3" cols="60">Rate 1-5: "food was great"</textarea><br>
+<button id="run">Run</button><pre id="out"></pre>
+<script>
+(async () => {
+  const s = document.getElementById('status');
+  if (!('LanguageModel' in self)) { s.textContent = 'no Prompt API'; return; }
+  const av = await LanguageModel.availability();
+  s.textContent = 'availability: ' + av;
+  if (av === 'unavailable') return;
+  document.getElementById('run').addEventListener('click', async () => {
+    const session = await LanguageModel.create();
+    const schema = { type:'object', properties:{ rating:{type:'number'}, is_positive:{type:'boolean'} }, required:['rating','is_positive'] };
+    try {
+      const r = await session.prompt(document.getElementById('inp').value, { responseConstraint: schema });
+      document.getElementById('out').textContent = r;
+    } catch(e) { document.getElementById('out').textContent = 'err: ' + e.message; }
+    finally { await session.destroy(); }
+  });
+})();
+</script></body></html>

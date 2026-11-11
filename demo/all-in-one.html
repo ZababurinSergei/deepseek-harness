@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head><meta charset="utf-8"><title>All-in-One: Prompt + WebMCP + Summarizer</title></head>
+<body>
+<h1>All-in-One Demo</h1>
+<p id="status">Инициализация…</p>
+<textarea id="inp" rows="4" cols="70">Summarize this page and tell me the weather in Moscow.</textarea><br>
+<button id="ask">Ask</button>
+<pre id="out"></pre>
+<script>
+(async () => {
+  const status = document.getElementById('status');
+  const out = document.getElementById('out');
+  const log = (m) => { out.textContent += m + '\\n'; };
+
+  // 1. WebMCP: регистрация инструментов
+  if ('modelContext' in document) {
+    try {
+      await document.modelContext.registerTool({
+        name: 'get_weather',
+        description: 'Get current weather for a city.',
+        inputSchema: { type: 'object', properties: { city: { type: 'string' } }, required: ['city'] },
+        annotations: { readOnlyHint: true },
+        async execute({ city }) { return { city, temp: 22, condition: "sunny" }; }
+      });
+      log("[webmcp] get_weather registered");
+    } catch (e) { log('[webmcp] register failed: ' + e.message); }
+  } else { log("[webmcp] not supported"); }
+
+  // 2. Prompt API: создание сессии с tools
+  if (!('LanguageModel' in self)) { status.textContent = 'Prompt API not supported'; return; }
+  const av = await LanguageModel.availability();
+  status.textContent = 'Prompt API availability: ' + av;
+  if (av === 'unavailable') return;
+
+  const session = await LanguageModel.create({
+    tools: [{
+      name: 'get_weather',
+      description: 'Get weather for a city.',
+      inputSchema: { type: 'object', properties: { city: { type: 'string' } }, required: ['city'] },
+      async execute({ city }) { return { city, temp: 22, condition: "sunny" }; }
+    }]
+  });
+  log("[prompt] session created");
+
+  // 3. Summarizer API: fallback при переполнении
+  if ('Summarizer' in self) {
+    session.addEventListener('contextoverflow', async () => {
+      log('[prompt] contextoverflow — compressing with Summarizer');
+      const sm = await Summarizer.create({ type: 'tldr', length: 'short' });
+      const compressed = await sm.summarize(out.textContent || 'history');
+      log('[summarizer] compressed: ' + compressed);
+    });
+  }
+
+  document.getElementById('ask').addEventListener('click', async () => {
+    const q = document.getElementById('inp').value;
+    out.textContent = '';
+    log('> ' + q);
+    try {
+      const r = await session.prompt(q);
+      log('< ' + r);
+    } catch (e) { log('error: ' + e.message); }
+  });
+})();
+</script>
+</body></html>

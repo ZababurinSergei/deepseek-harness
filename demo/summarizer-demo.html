@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><title>Summarizer Demo</title></head>
+<body><h1>Summarizer</h1><p id="status">…</p>
+<textarea id="inp" rows="6" cols="70">Длинный текст для суммаризации.</textarea><br>
+<button id="run">Summarize</button><pre id="out"></pre>
+<script>
+(async () => {
+  const s = document.getElementById('status');
+  if (!('Summarizer' in self)) { s.textContent = 'no Summarizer'; return; }
+  const opts = { type:'key-points', format:'plain-text', length:'short' };
+  const av = await Summarizer.availability(opts);
+  s.textContent = 'availability: ' + av;
+  if (av === 'unavailable') return;
+  document.getElementById('run').addEventListener('click', async () => {
+    if (av === 'downloadable') { s.textContent = 'click again to download'; return; }
+    const sm = await Summarizer.create(opts);
+    try { document.getElementById('out').textContent = await sm.summarize(document.getElementById('inp').value); }
+    catch(e) { document.getElementById('out').textContent = 'err: ' + e.message; }
+  });
+})();
+</script></body></html>

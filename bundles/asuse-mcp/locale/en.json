@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "ASUSE MCP servers",
+    "description": "Connects the local stdio MCP servers mcp-postgres (read-only PostgreSQL) and mcp-wiki (BookStack) so their tools appear to the agent as mcp__postgres__* and mcp__wiki__*.",
+    "detail": "docs/DETAIL.md"
+  }
+}

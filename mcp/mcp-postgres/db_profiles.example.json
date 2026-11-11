@@ -1,0 +1,16 @@
+{
+    "asuse.dev": {
+        "host": "asuse-ai-dev.infoenergo.loc",
+        "port": 5432,
+        "dbname": "asuse",
+        "user": "webuser",
+        "password": "kl0pik"
+    },
+    "filestorage.dev": {
+        "host": "asuse-ai-dev.infoenergo.loc",
+        "port": 5432,
+        "dbname": "filestorage",
+        "user": "webuser",
+        "password": "kl0pik"
+    }
+}

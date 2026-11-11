@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MCP-серверы ASUSE",
+    "description": "Подключает локальные stdio MCP-серверы mcp-postgres (только чтение PostgreSQL) и mcp-wiki (BookStack): их инструменты доступны агенту как mcp__postgres__* и mcp__wiki__*.",
+    "detail": "docs/DETAIL.md"
+  }
+}

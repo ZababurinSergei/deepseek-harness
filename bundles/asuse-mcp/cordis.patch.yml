@@ -1,0 +1,31 @@
+- insert:
+    - id: mcp-postgres
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: postgres
+        transport: stdio
+        command: C:/Users/szababurin/WebstormProjects/deepseek-harness/mcp/mcp-postgres/mcp-postgres.exe
+        env:
+          DB_CONFIG_PATH: C:/Users/szababurin/WebstormProjects/deepseek-harness/mcp/mcp-postgres/db_profiles.json
+        failOnStartupError: true
+    - id: mcp-wiki
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: wiki
+        transport: stdio
+        command: C:/Users/szababurin/WebstormProjects/deepseek-harness/mcp/mcp-wiki/mcp-wiki.exe
+        env:
+          WIKI_CONFIG_PATH: C:/Users/szababurin/WebstormProjects/deepseek-harness/mcp/mcp-wiki/wiki_profiles.json
+        failOnStartupError: true
+    - id: mcp-gitlab
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: gitlab
+        transport: stdio
+        command: C:/nvm4w/nodejs/node.exe
+        args:
+          - C:/nvm4w/nodejs/node_modules/@zereight/mcp-gitlab/build/index.js
+        env:
+          GITLAB_PERSONAL_ACCESS_TOKEN: !!js process.env.GITLAB_PERSONAL_ACCESS_TOKEN
+          GITLAB_API_URL: !!js process.env.GITLAB_API_URL
+        failOnStartupError: true

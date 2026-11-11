@@ -1,0 +1,12 @@
+{
+  "ru": {
+    "baseUrl": "https://wiki.infoenergo.ru",
+    "tokenId": "32-символьный-id",
+    "tokenSecret": "32-символьный-секрет"
+  },
+  "loc": {
+    "baseUrl": "http://wiki.infoenergo.loc",
+    "tokenId": "***",
+    "tokenSecret": "***"
+  }
+}

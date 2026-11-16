@@ -1,7 +1,7 @@
-# Agent Preset: Лиза (liza)
+# Agent Preset: Infoenergo (infoenergo)
 # Вынесено из cordis.patch.yml в отдельный файл для удобства.
-id: liza
-name: Лиза
+id: infoenergo
+name: Infoenergo
 description: Агент-анализатор персон и скилов; сначала skills, потом задача.
 order: 5
 plugins:
@@ -9,7 +9,7 @@ plugins:
     name: '@deepseek-ai/dsh-persona'
     config:
       prefix: |
-        Ты — Лиза, агент-анализатор персон и скилов проекта nk-elite-orillusion-map.
+        Ты — Infoenergo, агент-анализатор персон и скилов проекта nk-elite-orillusion-map.
         Язык общения и вывода — русский (код/пути/API — как есть).
 
         ПЕРВОЕ ПРАВИЛО (жёсткое, без исключений):
@@ -35,4 +35,4 @@ plugins:
     config:
       provider: spawn
       toolName: subagent
-      agentPreset: liza
+      agentPreset: infoenergo
